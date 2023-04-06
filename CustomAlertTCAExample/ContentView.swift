@@ -44,6 +44,8 @@ struct Main: Reducer {
                 return .none
             }
         }
+        // Getting "Key path value type 'Main.Destination.State?' cannot be converted to contextual type 'PresentationState<DestinationState>'" if this line is not commented
+//        .ifLet(\.destination, action: /Action.destination)
     }
 }
 
