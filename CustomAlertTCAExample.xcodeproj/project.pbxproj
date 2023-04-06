@@ -11,6 +11,10 @@
 		96E0803929DF0AA9006607DE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E0803829DF0AA9006607DE /* ContentView.swift */; };
 		96E0803B29DF0AAA006607DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96E0803A29DF0AAA006607DE /* Assets.xcassets */; };
 		96E0803E29DF0AAA006607DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96E0803D29DF0AAA006607DE /* Preview Assets.xcassets */; };
+		96E0804629DF0B7F006607DE /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 96E0804529DF0B7F006607DE /* ComposableArchitecture */; };
+		96E0804929DF0B97006607DE /* WhisperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E0804829DF0B97006607DE /* WhisperView.swift */; };
+		96E0804B29DF0BEE006607DE /* Whisper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E0804A29DF0BEE006607DE /* Whisper.swift */; };
+		96E0804D29DF0C43006607DE /* WhisperType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E0804C29DF0C43006607DE /* WhisperType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +23,9 @@
 		96E0803829DF0AA9006607DE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		96E0803A29DF0AAA006607DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96E0803D29DF0AAA006607DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		96E0804829DF0B97006607DE /* WhisperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperView.swift; sourceTree = "<group>"; };
+		96E0804A29DF0BEE006607DE /* Whisper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Whisper.swift; sourceTree = "<group>"; };
+		96E0804C29DF0C43006607DE /* WhisperType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhisperType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96E0804629DF0B7F006607DE /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +59,7 @@
 		96E0803529DF0AA9006607DE /* CustomAlertTCAExample */ = {
 			isa = PBXGroup;
 			children = (
+				96E0804729DF0B85006607DE /* Whisper */,
 				96E0803629DF0AA9006607DE /* CustomAlertTCAExampleApp.swift */,
 				96E0803829DF0AA9006607DE /* ContentView.swift */,
 				96E0803A29DF0AAA006607DE /* Assets.xcassets */,
@@ -65,6 +74,16 @@
 				96E0803D29DF0AAA006607DE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		96E0804729DF0B85006607DE /* Whisper */ = {
+			isa = PBXGroup;
+			children = (
+				96E0804829DF0B97006607DE /* WhisperView.swift */,
+				96E0804A29DF0BEE006607DE /* Whisper.swift */,
+				96E0804C29DF0C43006607DE /* WhisperType.swift */,
+			);
+			path = Whisper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +102,9 @@
 			dependencies = (
 			);
 			name = CustomAlertTCAExample;
+			packageProductDependencies = (
+				96E0804529DF0B7F006607DE /* ComposableArchitecture */,
+			);
 			productName = CustomAlertTCAExample;
 			productReference = 96E0803329DF0AA9006607DE /* CustomAlertTCAExample.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +133,9 @@
 				Base,
 			);
 			mainGroup = 96E0802A29DF0AA9006607DE;
+			packageReferences = (
+				96E0804429DF0B7F006607DE /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = 96E0803429DF0AA9006607DE /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,6 +163,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				96E0803929DF0AA9006607DE /* ContentView.swift in Sources */,
+				96E0804929DF0B97006607DE /* WhisperView.swift in Sources */,
+				96E0804D29DF0C43006607DE /* WhisperType.swift in Sources */,
+				96E0804B29DF0BEE006607DE /* Whisper.swift in Sources */,
 				96E0803729DF0AA9006607DE /* CustomAlertTCAExampleApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -195,7 +223,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -249,7 +277,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -339,6 +367,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		96E0804429DF0B7F006607DE /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				branch = prerelease/1.0;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		96E0804529DF0B7F006607DE /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96E0804429DF0B7F006607DE /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 96E0802B29DF0AA9006607DE /* Project object */;
 }

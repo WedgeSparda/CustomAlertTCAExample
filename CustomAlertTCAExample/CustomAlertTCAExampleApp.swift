@@ -11,7 +11,12 @@ import SwiftUI
 struct CustomAlertTCAExampleApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(
+                store: .init(
+                    initialState: .init(),
+                    reducer: Main()
+                )
+            )
         }
     }
 }
