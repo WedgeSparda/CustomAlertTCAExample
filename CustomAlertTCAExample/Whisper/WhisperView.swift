@@ -164,15 +164,13 @@ public extension View {
         isPresented: Binding<Bool>,
         store: Store<Whisper.State?, PresentationAction<Whisper.Action>>
     ) -> some View {
-        if isPresented.wrappedValue {
-            IfLetStore(
-                store.scope(
-                    state: returningLastNonNilValue { $0 },
-                    action: { .presented($0) }
-                )
-            ) { store in
-                self.modifier(WhisperViewModifier(store: store))
-            }
+        IfLetStore(
+            store.scope(
+                state: returningLastNonNilValue { $0 },
+                action: { .presented($0) }
+            )
+        ) { store in
+            self.modifier(WhisperViewModifier(store: store))
         }
     }
 }

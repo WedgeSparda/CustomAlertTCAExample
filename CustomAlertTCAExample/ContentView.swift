@@ -1,12 +1,13 @@
 import ComposableArchitecture
 import SwiftUI
+import SwiftUINavigation
 
 struct Main: Reducer {
     struct State: Equatable {
         var destination: Destination.State?
     }
     
-    enum Action {
+    enum Action: Equatable {
         case didTapButton
         case destination(PresentationAction<Destination.Action>)
     }
@@ -34,7 +35,7 @@ struct Main: Reducer {
         }
     }
     
-    var body: some Reducer<State, Action> {
+    var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case .didTapButton:
@@ -44,8 +45,9 @@ struct Main: Reducer {
                 return .none
             }
         }
-        // Getting "Key path value type 'Main.Destination.State?' cannot be converted to contextual type 'PresentationState<DestinationState>'" if this line is not commented
-//        .ifLet(\.destination, action: /Action.destination)
+        .ifLet(\.destination, action: /Action.destination) {
+            Destination()
+        }
     }
 }
 
