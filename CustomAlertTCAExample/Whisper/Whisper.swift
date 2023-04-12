@@ -7,7 +7,7 @@ enum WhisperDismissalTimeInSecondsKey: DependencyKey {
 }
 
 extension DependencyValues {
-    var dismissalTimeInSeconds: Int {
+    var whisperDismissalTimeInSeconds: Int {
         get { self[WhisperDismissalTimeInSecondsKey.self] }
         set { self[WhisperDismissalTimeInSecondsKey.self] = newValue }
     }
@@ -18,7 +18,7 @@ public struct Whisper: Reducer {
     private enum CancelID {
         case timer
     }
-    @Dependency(\.dismissalTimeInSeconds) var dismissalTimeInSeconds
+    @Dependency(\.whisperDismissalTimeInSeconds) var dismissalTimeInSeconds
     @Dependency(\.dismiss) var dismiss
  
     public init() {}

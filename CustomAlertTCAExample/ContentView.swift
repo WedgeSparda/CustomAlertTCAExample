@@ -1,10 +1,9 @@
 import ComposableArchitecture
 import SwiftUI
-import SwiftUINavigation
 
 struct Main: Reducer {
     struct State: Equatable {
-        var destination: Destination.State?
+        @PresentationState var destination: Destination.State?
     }
     
     enum Action: Equatable {
@@ -45,7 +44,7 @@ struct Main: Reducer {
                 return .none
             }
         }
-        .ifLet(\.destination, action: /Action.destination) {
+        .ifLet(\.$destination, action: /Action.destination) {
             Destination()
         }
     }
