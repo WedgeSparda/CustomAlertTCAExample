@@ -54,13 +54,9 @@ public struct Whisper: Reducer {
                 return .run { _ in
                     var tickCount = 0
                     while tickCount < 3 {
-                        do {
-                            try await Task.sleep(nanoseconds: NSEC_PER_SEC)
-                            tickCount += 1
-                            if tickCount == dismissalTimeInSeconds {
-                                await self.dismiss()
-                            }
-                        } catch {
+                        try await Task.sleep(nanoseconds: NSEC_PER_SEC)
+                        tickCount += 1
+                        if tickCount == dismissalTimeInSeconds {
                             await self.dismiss()
                         }
                     }

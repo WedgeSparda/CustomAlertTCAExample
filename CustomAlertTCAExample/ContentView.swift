@@ -63,14 +63,10 @@ struct ContentView: View {
                     Text("Show Whisper")
                 }
             }
-            .whisper(
-                store: self.store.scope(
-                    state: \.destination,
-                    action: Main.Action.destination
-                ),
-                state: /Main.Destination.State.whisper,
-                action: Main.Destination.Action.whisper
-            )
+//            .whisper(self.store.scope(
+//                state: \.$destination,
+//                action: /Main.Action.destination
+//            ))
         }
         
     }
