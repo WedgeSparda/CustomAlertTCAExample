@@ -2,27 +2,55 @@ import SwiftUI
 import ComposableArchitecture
 
 public extension View {
-    @ViewBuilder
-    func whisper(_ store: StoreOf<Whisper>) -> some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
-            self.modifier(WhisperViewModifier(viewStore: viewStore))
-        }
+
+    func whisper<DestinationState, DestinationAction>(
+        _ store: Store<DestinationState?, PresentationAction<DestinationAction>>,
+        state toWhisperState: @escaping (DestinationState) -> Whisper.State?,
+        action fromWhisperAction: @escaping (Whisper.Action) -> DestinationAction
+    ) -> some View {
+        self.modifier(
+            WhisperViewModifier(
+                store: store.scope(
+                    state: {
+                        $0.flatMap(toWhisperState)
+                    },
+                    action: {
+                        switch $0 {
+                        case .didAppear:
+                            return .presented(fromWhisperAction($0))
+                        case .userDidTap:
+                            return .dismiss
+                        case .userDidClose:
+                            return .dismiss
+                        }
+                    }
+                )
+            )
+        )
     }
 }
 
 
 struct WhisperViewModifier: ViewModifier {
 
-    @ObservedObject var viewStore: ViewStoreOf<Whisper>
+    var store: Store<Whisper.State?, Whisper.Action>
     
-    init(viewStore: ViewStoreOf<Whisper>) {
-        self.viewStore = viewStore
+    init(store: Store<Whisper.State?, Whisper.Action>) {
+        self.store = store
     }
     
     func body(content: Content) -> some View {
-        ZStack(alignment: .top) {
-            content
-            WhisperView(viewStore: viewStore)
+        WithViewStore(
+            store,
+            observe: { $0 },
+            removeDuplicates: { ($0 != nil) == ($1 != nil) }
+        ) { viewStore in
+            ZStack(alignment: .top) {
+                content
+                    .zIndex(0)
+                WhisperView(viewStore: viewStore)
+                    .zIndex(1)
+            }
         }
     }
 }

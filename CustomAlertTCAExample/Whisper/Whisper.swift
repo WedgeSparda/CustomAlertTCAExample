@@ -53,10 +53,12 @@ public struct Whisper: Reducer {
             case .finite:
                 return .run { _ in
                     var tickCount = 0
-                    while tickCount < 3 {
+                    while tickCount <= dismissalTimeInSeconds {
+                        print("--> tick count")
                         try await Task.sleep(nanoseconds: NSEC_PER_SEC)
                         tickCount += 1
                         if tickCount == dismissalTimeInSeconds {
+                            print("--> dismiss")
                             await self.dismiss()
                         }
                     }

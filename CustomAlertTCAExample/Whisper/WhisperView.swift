@@ -3,14 +3,14 @@ import ComposableArchitecture
 
 struct WhisperView: View {
     
-    let viewStore: ViewStoreOf<Whisper>
+    let viewStore: ViewStore<Whisper.State?, Whisper.Action>
     let feedbackGenerator: UIImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
     var body: some View {
-//        WithViewStore(store, observe: { $0 }) { viewStore in
+        if let state = viewStore.state {
             ZStack {
                 HStack {
-                    image(for: viewStore.state.type)
+                    image(for: state.type)
                         .frame(width: 32, height: 32)
                         .padding(.leading)
                     
@@ -25,7 +25,7 @@ struct WhisperView: View {
                 HStack {
                     Spacer()
                     
-                    Text(viewStore.state.message)
+                    Text(state.message)
                         .foregroundColor(.white)
                         .padding(.vertical)
                         .padding(.horizontal, 32)
@@ -38,9 +38,9 @@ struct WhisperView: View {
             .cornerRadius(8)
             .padding(.horizontal)
             .accessibilityIdentifier("WhisperView")
-            .accessibilityValue(viewStore.state.message)
+            .accessibilityValue(state.message)
             .onAppear {
-                UIAccessibility.post(notification: .announcement, argument: viewStore.state.message)
+                UIAccessibility.post(notification: .announcement, argument: state.message)
                 feedbackGenerator.prepare()
             }
             .onTapGesture {
@@ -49,8 +49,10 @@ struct WhisperView: View {
             }
             .transition(.move(edge: .top).combined(with: .opacity))
             .animation(.easeIn(duration: 0.3))
-            .zIndex(1)
-//        }
+            .onAppear {
+                viewStore.send(.didAppear)
+            }
+        }
     }
     
     @ViewBuilder
@@ -72,7 +74,7 @@ struct WhisperView: View {
     
     @ViewBuilder
     private func closeButton(
-        viewStore: ViewStoreOf<Whisper>
+        viewStore: ViewStore<Whisper.State?, Whisper.Action>
     ) -> some View {
         Button {
             feedbackGenerator.impactOccurred()
@@ -87,7 +89,7 @@ struct WhisperView: View {
 }
 
 struct ComposableWhisperView_Previews: PreviewProvider {
-    static let errorStore = ViewStore(
+    static let errorStore: ViewStore<Whisper.State?, Whisper.Action> = ViewStore(
         Store(
             initialState: .init(
                 id: UUID(),
@@ -99,7 +101,7 @@ struct ComposableWhisperView_Previews: PreviewProvider {
         observe: {$0}
     )
     
-    static let successStore = ViewStore(
+    static let successStore: ViewStore<Whisper.State?, Whisper.Action> = ViewStore(
         Store(
             initialState: .init(
                 id: UUID(),

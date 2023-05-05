@@ -57,18 +57,23 @@ struct ContentView: View {
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             VStack {
+                Spacer()
                 Button {
                     viewStore.send(.didTapButton)
                 } label: {
                     Text("Show Whisper")
                 }
+                Spacer()
             }
-//            .whisper(self.store.scope(
-//                state: \.$destination,
-//                action: /Main.Action.destination
-//            ))
+            .whisper(
+                self.store.scope(
+                    state: \.destination,
+                    action: Main.Action.destination
+                ),
+                state: /Main.Destination.State.whisper,
+                action: Main.Destination.Action.whisper
+            )
         }
-        
     }
 }
 
@@ -80,5 +85,21 @@ struct ContentView_Previews: PreviewProvider {
                 reducer: Main()
             )
         )
+        
+        ContentView(
+            store: .init(
+                initialState: .init(
+                    destination: .whisper(
+                        .init(
+                            id: UUID(),
+                            message: "OLA KE ASE",
+                            type: .success
+                        )
+                    )
+                ),
+                reducer: Main()
+            )
+        )
+
     }
 }
