@@ -3,11 +3,11 @@ import ComposableArchitecture
 
 struct WhisperView: View {
     
-    let store: StoreOf<Whisper>
+    let viewStore: ViewStoreOf<Whisper>
     let feedbackGenerator: UIImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
+//        WithViewStore(store, observe: { $0 }) { viewStore in
             ZStack {
                 HStack {
                     image(for: viewStore.state.type)
@@ -50,7 +50,7 @@ struct WhisperView: View {
             .transition(.move(edge: .top).combined(with: .opacity))
             .animation(.easeIn(duration: 0.3))
             .zIndex(1)
-        }
+//        }
     }
     
     @ViewBuilder
@@ -87,30 +87,35 @@ struct WhisperView: View {
 }
 
 struct ComposableWhisperView_Previews: PreviewProvider {
+    static let errorStore = ViewStore(
+        Store(
+            initialState: .init(
+                id: UUID(),
+                message: "This is an error message",
+                type: .error
+            ),
+            reducer: Whisper()
+        ),
+        observe: {$0}
+    )
+    
+    static let successStore = ViewStore(
+        Store(
+            initialState: .init(
+                id: UUID(),
+                message: "This is a success message",
+                type: .success
+            ),
+            reducer: Whisper()
+        ),
+        observe: {$0}
+    )
+    
     static var previews: some View {
         VStack {
-            WhisperView(
-                store: .init(
-                    initialState: .init(
-                        id: UUID(),
-                        message: "This is an error message",
-                        type: .error
-                    ),
-                    reducer: Whisper()
-                )
-            )
+            WhisperView(viewStore: errorStore)
             
-            WhisperView(
-                store: .init(
-                    initialState: .init(
-                        id: UUID(),
-                        message: "This is a success message",
-                        type: .success
-                    ),
-                    reducer: Whisper()
-                )
-            )
-            
+            WhisperView(viewStore: successStore)
         }
         .previewDisplayName("Whisper types")
     }

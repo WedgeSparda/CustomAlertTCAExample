@@ -22,11 +22,7 @@ struct WhisperViewModifier: ViewModifier {
     func body(content: Content) -> some View {
         ZStack(alignment: .top) {
             content
-            Color.black
-                .opacity(0.5)
-                .onTapGesture {
-                    viewStore.send(.userDidTap)
-                }
+            WhisperView(viewStore: viewStore)
         }
     }
 }
