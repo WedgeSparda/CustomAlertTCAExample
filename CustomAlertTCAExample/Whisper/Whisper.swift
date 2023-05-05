@@ -3,7 +3,7 @@ import SwiftUI
 
 enum WhisperDismissalTimeInSecondsKey: DependencyKey {
     static let liveValue = 6
-    static let testValue = 2
+    static let testValue = 1
 }
 
 extension DependencyValues {
@@ -27,6 +27,10 @@ public struct Whisper: Reducer {
         public let message: String
         public let type: WhisperType
         
+        internal let whisperHiddenOffset: CGSize = .init(width: 0, height: -150)
+        internal let whisperPresentedOffset: CGSize = .zero
+        internal var whisperOffset: CGSize
+        
         public init(
             id: UUID,
             message: String,
@@ -35,40 +39,66 @@ public struct Whisper: Reducer {
             self.id = id
             self.message = message
             self.type = type
+            self.whisperOffset = whisperHiddenOffset
         }
     }
     
-    public enum Action {
+    public enum Action: Equatable {
         case didAppear
+        case startInternalTimer
+        
         case userDidTap
         case userDidClose
+        case dismiss
+        
+        case updateWhisperOffset(offset: CGSize)
     }
         
     public func reduce(into state: inout State, action: Action) -> Effect<Action> {
         switch action {
         case .didAppear:
+            return .concatenate(
+                .run { [offset = state.whisperPresentedOffset] send in
+                    await send(.updateWhisperOffset(offset: offset), animation: .spring())
+                },
+                .run { send in
+                    await send(.startInternalTimer)
+                }
+            )
+        case .startInternalTimer:
             switch state.type.duration {
             case .infinite:
                 return .cancel(id: CancelID.timer)
             case .finite:
-                return .run { _ in
+                return .run { send in
                     var tickCount = 0
                     while tickCount <= dismissalTimeInSeconds {
-                        print("--> tick count")
                         try await Task.sleep(nanoseconds: NSEC_PER_SEC)
                         tickCount += 1
                         if tickCount == dismissalTimeInSeconds {
-                            print("--> dismiss")
-                            await self.dismiss()
+                            await send(.dismiss, animation: .easeInOut)
                         }
                     }
                 }
                 .cancellable(id: CancelID.timer)
             }
         case .userDidTap, .userDidClose:
-            return .run { _ in
-                await self.dismiss()
+            return .run { send in
+                await send(.dismiss, animation: .easeInOut)
             }
+        case .dismiss:
+            return .concatenate(
+                .run { [offset = state.whisperHiddenOffset] send in
+                    await send(.updateWhisperOffset(offset: offset), animation: .easeInOut)
+                },
+                .run { _ in
+                    try await Task.sleep(nanoseconds: NSEC_PER_SEC)
+                    await self.dismiss()
+                }
+            )
+        case let .updateWhisperOffset(offset):
+            state.whisperOffset = offset
+            return .none
         }
     }
 }

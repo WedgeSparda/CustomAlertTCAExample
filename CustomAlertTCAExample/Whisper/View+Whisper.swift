@@ -16,11 +16,13 @@ public extension View {
                     },
                     action: {
                         switch $0 {
-                        case .didAppear:
+                        case .didAppear, .startInternalTimer, .updateWhisperOffset:
                             return .presented(fromWhisperAction($0))
                         case .userDidTap:
                             return .dismiss
                         case .userDidClose:
+                            return .dismiss
+                        case .dismiss:
                             return .dismiss
                         }
                     }
@@ -48,6 +50,7 @@ struct WhisperViewModifier: ViewModifier {
             ZStack(alignment: .top) {
                 content
                     .zIndex(0)
+                                    
                 WhisperView(viewStore: viewStore)
                     .zIndex(1)
             }

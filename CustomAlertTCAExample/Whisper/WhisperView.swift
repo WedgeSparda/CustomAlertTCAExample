@@ -42,16 +42,13 @@ struct WhisperView: View {
             .onAppear {
                 UIAccessibility.post(notification: .announcement, argument: state.message)
                 feedbackGenerator.prepare()
+                viewStore.send(.didAppear, animation: .easeInOut)
             }
             .onTapGesture {
                 feedbackGenerator.impactOccurred()
-                viewStore.send(.userDidTap, animation: .default)
+                viewStore.send(.userDidTap, animation: .easeInOut)
             }
-            .transition(.move(edge: .top).combined(with: .opacity))
-            .animation(.easeIn(duration: 0.3))
-            .onAppear {
-                viewStore.send(.didAppear)
-            }
+            .offset(state.whisperOffset)
         }
     }
     
@@ -78,7 +75,7 @@ struct WhisperView: View {
     ) -> some View {
         Button {
             feedbackGenerator.impactOccurred()
-            viewStore.send(.userDidClose, animation: .default)
+            viewStore.send(.userDidClose, animation: .easeInOut)
         } label: {
             Image("close")
                 .renderingMode(.template)
