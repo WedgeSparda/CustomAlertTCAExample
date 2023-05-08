@@ -16,12 +16,12 @@ public extension View {
                     },
                     action: {
                         switch $0 {
-                        case .didAppear, .startInternalTimer, .updateWhisperOffset:
+                        case .didAppear,
+                             .startInternalTimer,
+                             .updateWhisperOffset,
+                             .userDidTap,
+                             .userDidClose:
                             return .presented(fromWhisperAction($0))
-                        case .userDidTap:
-                            return .dismiss
-                        case .userDidClose:
-                            return .dismiss
                         case .dismiss:
                             return .dismiss
                         }
