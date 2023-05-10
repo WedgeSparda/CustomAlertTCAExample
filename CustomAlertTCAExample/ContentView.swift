@@ -41,7 +41,13 @@ struct Main: Reducer {
                 guard state.destination == nil else {
                     return .none
                 }
-                state.destination = .whisper(.init(id: UUID(), message: "This is a test", type: .success))
+                state.destination = .whisper(
+                    .init(
+                        id: UUID(),
+                        message: "This is a test",
+                        type: .success
+                    )
+                )
                 return .none
             case .destination:
                 return .none
