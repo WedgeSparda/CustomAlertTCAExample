@@ -48,9 +48,7 @@ struct WhisperView: View {
                 feedbackGenerator.impactOccurred()
                 viewStore.send(.userDidTap, animation: .easeInOut)
             }
-//            .offset(state.whisperOffset)
-            .transition(.move(edge: .top).combined(with: .opacity))
-            .animation(.easeInOut)
+            .offset(state.whisperOffset)
         }
     }
     
