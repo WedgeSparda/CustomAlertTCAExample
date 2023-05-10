@@ -11,9 +11,7 @@ public extension View {
         self.modifier(
             WhisperViewModifier(
                 store: store.scope(
-                    state: {
-                        $0.flatMap(toWhisperState)
-                    },
+                    state: { $0.flatMap(toWhisperState) },
                     action: {
                         switch $0 {
                         case .dismiss:
