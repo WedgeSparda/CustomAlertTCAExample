@@ -20,12 +20,27 @@ public extension View {
                              .startInternalTimer,
                              .updateWhisperOffset,
                              .userDidTap,
-                             .userDidClose:
+                             .userDidClose,
+                             .updateWhisper:
                             return .presented(fromWhisperAction($0))
                         }
                     }
                 )
             )
+        )
+    }
+    
+    func onSwipeUp(
+        minimumDistance: CGFloat = 0.0,
+        _ action: @escaping () -> Void
+    ) -> some View {
+        self.gesture(
+            DragGesture(minimumDistance: minimumDistance, coordinateSpace: .local)
+                .onEnded { value in
+                    if value.translation.height < 0 {
+                        action()
+                    }
+                }
         )
     }
 }

@@ -24,8 +24,8 @@ public struct Whisper: Reducer {
     public init() {}
     public struct State: Identifiable, Equatable {
         public let id: UUID
-        public let message: String
-        public let type: WhisperType
+        public var message: String
+        public var type: WhisperType
         
         internal let whisperHiddenOffset: CGSize = .init(width: 0, height: -150)
         internal let whisperPresentedOffset: CGSize = .zero
@@ -51,6 +51,7 @@ public struct Whisper: Reducer {
         case userDidClose
         case dismiss
         
+        case updateWhisper(type: WhisperType, message: String)
         case updateWhisperOffset(offset: CGSize)
     }
         
@@ -92,12 +93,17 @@ public struct Whisper: Reducer {
                     await send(.updateWhisperOffset(offset: offset), animation: .easeInOut)
                 },
                 .run { _ in
-                    try await Task.sleep(nanoseconds: NSEC_PER_SEC)
+                    try await Task.sleep(nanoseconds: NSEC_PER_SEC / 3)
                     await self.dismiss()
                 }
             )
         case let .updateWhisperOffset(offset):
             state.whisperOffset = offset
+            return .none
+            
+        case let.updateWhisper(type, message):
+            state.type = type
+            state.message = message
             return .none
         }
     }

@@ -9,7 +9,8 @@ struct Main: Reducer {
     enum Action: Equatable {
         case didTapShowWhisperButton
         case didTapHideWhisperButton
-        case didTapShowAlert
+        case didTapShowAlertButton
+        case didTapUpdateWhisperButton
         case destination(PresentationAction<Destination.Action>)
         
         enum Alert: Equatable {
@@ -53,10 +54,14 @@ struct Main: Reducer {
             case .didTapHideWhisperButton:
                 state.destination = nil
                 return .none
-            case .didTapShowAlert:
+            case .didTapShowAlertButton:
                 showAlert(state: &state)
                 return .none
-                
+            case .didTapUpdateWhisperButton:
+                guard case .whisper = state.destination else {
+                    return .none
+                }
+                return .send(.destination(.presented(.whisper(.updateWhisper(type: .error, message: "Oops some failed!")))))
             case .destination(.presented(.alert(.showWhisper))):
                 showWhisper(state: &state)
                 return .none
@@ -85,6 +90,7 @@ struct Main: Reducer {
             )
         )
     }
+
     private func showAlert(state: inout State) {
         state.destination = .alert(.showWhisper())
     }
@@ -116,7 +122,12 @@ struct ContentView: View {
                     Text("Show Whisper")
                 }
                 Button {
-                    viewStore.send(.didTapShowAlert)
+                    viewStore.send(.didTapUpdateWhisperButton)
+                } label: {
+                    Text("Update Whisper")
+                }
+                Button {
+                    viewStore.send(.didTapShowAlertButton)
                 } label: {
                     Text("Show Alert")
                 }
