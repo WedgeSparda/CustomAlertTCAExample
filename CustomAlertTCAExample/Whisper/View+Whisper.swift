@@ -4,7 +4,7 @@ import ComposableArchitecture
 public extension View {
 
     func whisper<DestinationState, DestinationAction>(
-        _ store: Store<DestinationState?, PresentationAction<DestinationAction>>,
+        store: Store<DestinationState?, PresentationAction<DestinationAction>>,
         state toWhisperState: @escaping (DestinationState) -> Whisper.State?,
         action fromWhisperAction: @escaping (Whisper.Action) -> DestinationAction
     ) -> some View {
