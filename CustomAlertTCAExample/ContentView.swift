@@ -8,7 +8,7 @@ struct Main: Reducer {
     
     enum Action: Equatable {
         case didTapShowWhisperButton
-        case didTapHideWhisperButton
+        case didTapHideAllButton
         case didTapShowAlertButton
         case didTapUpdateWhisperButton
         case destination(PresentationAction<Destination.Action>)
@@ -19,18 +19,9 @@ struct Main: Reducer {
     }
     
     struct Destination: Reducer {
-        enum State: Equatable, Identifiable {
+        enum State: Equatable {
             case whisper(Whisper.State)
             case alert(AlertState<Main.Action.Alert>)
-            
-            var id: AnyHashable {
-                switch self {
-                case let .whisper(state):
-                    return state.id
-                case let .alert(state):
-                    return state.id
-                }
-            }
         }
         
         enum Action: Equatable {
@@ -51,7 +42,7 @@ struct Main: Reducer {
             case .didTapShowWhisperButton:
                 showWhisperIfNeeded(state: &state)
                 return .none
-            case .didTapHideWhisperButton:
+            case .didTapHideAllButton:
                 state.destination = nil
                 return .none
             case .didTapShowAlertButton:
@@ -84,9 +75,8 @@ struct Main: Reducer {
     private func showWhisper(state: inout State) {
         state.destination = .whisper(
             .init(
-                id: UUID(),
                 message: "This is a test",
-                type: .success
+                type: .error
             )
         )
     }
@@ -133,7 +123,7 @@ struct ContentView: View {
                 }
                 Spacer()
                 Button {
-                    viewStore.send(.didTapHideWhisperButton, animation: .default)
+                    viewStore.send(.didTapHideAllButton, animation: .default)
                 } label: {
                     Text("Hide All")
                 }
@@ -173,7 +163,7 @@ struct ContentView_Previews: PreviewProvider {
                 initialState: .init(
                     destination: .whisper(
                         .init(
-                            id: UUID(),
+//                            id: UUID(),
                             message: "OLA KE ASE",
                             type: .success
                         )

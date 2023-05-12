@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		961450CE2A04D455005B7220 /* View+Whisper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961450CD2A04D455005B7220 /* View+Whisper.swift */; };
+		965F75C62A0E4AE700E77EBA /* CustomAlertTCAExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965F75C52A0E4AE700E77EBA /* CustomAlertTCAExampleTests.swift */; };
 		96E0803729DF0AA9006607DE /* CustomAlertTCAExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E0803629DF0AA9006607DE /* CustomAlertTCAExampleApp.swift */; };
 		96E0803929DF0AA9006607DE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E0803829DF0AA9006607DE /* ContentView.swift */; };
 		96E0803B29DF0AAA006607DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96E0803A29DF0AAA006607DE /* Assets.xcassets */; };
@@ -18,9 +19,21 @@
 		96E0804D29DF0C43006607DE /* WhisperType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96E0804C29DF0C43006607DE /* WhisperType.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		965F75C72A0E4AE700E77EBA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 96E0802B29DF0AA9006607DE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 96E0803229DF0AA9006607DE;
+			remoteInfo = CustomAlertTCAExample;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		961450CD2A04D455005B7220 /* View+Whisper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Whisper.swift"; sourceTree = "<group>"; };
 		9646703929E6E8AD00D99B99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		965F75C32A0E4AE700E77EBA /* CustomAlertTCAExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CustomAlertTCAExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		965F75C52A0E4AE700E77EBA /* CustomAlertTCAExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertTCAExampleTests.swift; sourceTree = "<group>"; };
 		96E0803329DF0AA9006607DE /* CustomAlertTCAExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomAlertTCAExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96E0803629DF0AA9006607DE /* CustomAlertTCAExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertTCAExampleApp.swift; sourceTree = "<group>"; };
 		96E0803829DF0AA9006607DE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +45,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		965F75C02A0E4AE700E77EBA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96E0803029DF0AA9006607DE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -43,10 +63,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		965F75C42A0E4AE700E77EBA /* CustomAlertTCAExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				965F75C52A0E4AE700E77EBA /* CustomAlertTCAExampleTests.swift */,
+			);
+			path = CustomAlertTCAExampleTests;
+			sourceTree = "<group>";
+		};
 		96E0802A29DF0AA9006607DE = {
 			isa = PBXGroup;
 			children = (
 				96E0803529DF0AA9006607DE /* CustomAlertTCAExample */,
+				965F75C42A0E4AE700E77EBA /* CustomAlertTCAExampleTests */,
 				96E0803429DF0AA9006607DE /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				96E0803329DF0AA9006607DE /* CustomAlertTCAExample.app */,
+				965F75C32A0E4AE700E77EBA /* CustomAlertTCAExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -94,6 +124,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		965F75C22A0E4AE700E77EBA /* CustomAlertTCAExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 965F75CB2A0E4AE700E77EBA /* Build configuration list for PBXNativeTarget "CustomAlertTCAExampleTests" */;
+			buildPhases = (
+				965F75BF2A0E4AE700E77EBA /* Sources */,
+				965F75C02A0E4AE700E77EBA /* Frameworks */,
+				965F75C12A0E4AE700E77EBA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				965F75C82A0E4AE700E77EBA /* PBXTargetDependency */,
+			);
+			name = CustomAlertTCAExampleTests;
+			productName = CustomAlertTCAExampleTests;
+			productReference = 965F75C32A0E4AE700E77EBA /* CustomAlertTCAExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		96E0803229DF0AA9006607DE /* CustomAlertTCAExample */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 96E0804129DF0AAA006607DE /* Build configuration list for PBXNativeTarget "CustomAlertTCAExample" */;
@@ -121,9 +169,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
+				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
+					965F75C22A0E4AE700E77EBA = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = 96E0803229DF0AA9006607DE;
+					};
 					96E0803229DF0AA9006607DE = {
 						CreatedOnToolsVersion = 14.2;
 					};
@@ -146,11 +198,19 @@
 			projectRoot = "";
 			targets = (
 				96E0803229DF0AA9006607DE /* CustomAlertTCAExample */,
+				965F75C22A0E4AE700E77EBA /* CustomAlertTCAExampleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		965F75C12A0E4AE700E77EBA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96E0803129DF0AA9006607DE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -163,6 +223,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		965F75BF2A0E4AE700E77EBA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				965F75C62A0E4AE700E77EBA /* CustomAlertTCAExampleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96E0802F29DF0AA9006607DE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -178,7 +246,53 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		965F75C82A0E4AE700E77EBA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 96E0803229DF0AA9006607DE /* CustomAlertTCAExample */;
+			targetProxy = 965F75C72A0E4AE700E77EBA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		965F75C92A0E4AE700E77EBA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WTDP655XT9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = es.rpastor.CustomAlertTCAExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CustomAlertTCAExample.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CustomAlertTCAExample";
+			};
+			name = Debug;
+		};
+		965F75CA2A0E4AE700E77EBA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = WTDP655XT9;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = es.rpastor.CustomAlertTCAExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CustomAlertTCAExample.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CustomAlertTCAExample";
+			};
+			name = Release;
+		};
 		96E0803F29DF0AAA006607DE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -356,6 +470,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		965F75CB2A0E4AE700E77EBA /* Build configuration list for PBXNativeTarget "CustomAlertTCAExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				965F75C92A0E4AE700E77EBA /* Debug */,
+				965F75CA2A0E4AE700E77EBA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		96E0802E29DF0AA9006607DE /* Build configuration list for PBXProject "CustomAlertTCAExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

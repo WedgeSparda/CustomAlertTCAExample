@@ -92,7 +92,6 @@ struct ComposableWhisperView_Previews: PreviewProvider {
     static let errorStore: ViewStore<Whisper.State?, Whisper.Action> = ViewStore(
         Store(
             initialState: .init(
-                id: UUID(),
                 message: "This is an error message",
                 type: .error
             ),
@@ -104,7 +103,6 @@ struct ComposableWhisperView_Previews: PreviewProvider {
     static let successStore: ViewStore<Whisper.State?, Whisper.Action> = ViewStore(
         Store(
             initialState: .init(
-                id: UUID(),
                 message: "This is a success message",
                 type: .success
             ),

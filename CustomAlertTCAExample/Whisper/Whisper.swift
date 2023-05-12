@@ -22,8 +22,7 @@ public struct Whisper: Reducer {
     @Dependency(\.dismiss) var dismiss
  
     public init() {}
-    public struct State: Identifiable, Equatable {
-        public let id: UUID
+    public struct State: Equatable {
         public var message: String
         public var type: WhisperType
         
@@ -32,11 +31,9 @@ public struct Whisper: Reducer {
         internal var whisperOffset: CGSize
         
         public init(
-            id: UUID,
             message: String,
             type: WhisperType
         ) {
-            self.id = id
             self.message = message
             self.type = type
             self.whisperOffset = whisperHiddenOffset
